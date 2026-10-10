@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 40 20% 97%;
+        --foreground: 222 47% 11%;
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 11%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 47% 11%;
+        --primary: 350 71% 36%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 30 15% 94%;
+        --secondary-foreground: 222 47% 11%;
+        --muted: 30 15% 94%;
+        --muted-foreground: 215 16% 38%;
+        --accent: 350 60% 96%;
+        --accent-foreground: 350 71% 30%;
+        --destructive: 0 72% 45%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 30 12% 86%;
+        --input: 30 12% 82%;
+        --ring: 350 71% 36%;
+        --gold: 39 47% 52%;
+        --navy: 222 47% 11%;
+        --success: 160 84% 30%;
+        --info: 217 91% 50%;
+        --radius: 0.375rem;
+    }
+    .dark {
+        --background: 222 42% 6%;
+        --foreground: 210 40% 98%;
+        --card: 221 39% 11%;
+        --card-foreground: 210 40% 98%;
+        --popover: 221 39% 11%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 0 84% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 217 33% 17%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+        --accent: 217 33% 17%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 217 33% 17%;
+        --input: 217 33% 20%;
+        --ring: 0 84% 60%;
+        --gold: 38 92% 50%;
+        --success: 160 84% 39%;
+        --info: 217 91% 60%;
+        --radius: 0.375rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+        font-family: "Outfit", ui-sans-serif, system-ui, sans-serif;
+    }
+    ::selection {
+        background: hsl(var(--primary) / 0.2);
+    }
+    :focus-visible {
+        outline: 2px solid hsl(var(--ring));
+        outline-offset: 2px;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}

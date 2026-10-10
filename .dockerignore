@@ -1,0 +1,9 @@
+.git
+**/.DS_Store
+**/__pycache__
+**/*.pyc
+**/.venv
+**/node_modules
+frontend/build
+backend/local_storage
+*.md

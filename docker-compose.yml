@@ -1,0 +1,52 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - weschool_mongo:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "9150:80"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      MONGO_URL: mongodb://mongo:27017
+      DB_NAME: weschool_admissions
+      CORS_ORIGINS: http://localhost:9150
+      APP_TIMEZONE: Asia/Kolkata
+      COOKIE_SECURE: "false"
+      JWT_SECRET: local-docker-jwt-secret-weschool
+      OTP_PEPPER: local-docker-otp-pepper-weschool
+      APPLICATION_FEE_INR: "1500"
+      ADMIN_EMAIL: superadmin@weschool-demo.in
+      ADMIN_PASSWORD: SuperAdmin@2026
+      SEED_STAFF_PASSWORD: Staff@2026
+      SEED_CANDIDATE_PASSWORD: Candidate@2026
+      EMERGENT_EMAIL_KEY: ""
+      EMAIL_FROM_NAME: WeSchool Admissions
+      EMAIL_REPLY_TO: ""
+      TWILIO_ACCOUNT_SID: ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      TWILIO_AUTH_TOKEN: local-placeholder
+      TWILIO_WHATSAPP_FROM: whatsapp:+14155238886
+      TWILIO_WHATSAPP_CONTENT_SID: ""
+      STRIPE_API_KEY: sk_test_emergent_local_placeholder
+      STRIPE_WEBHOOK_SECRET: "whsec_local_weschool_portal"
+      EMERGENT_LLM_KEY: ""
+      STORAGE_MODE: local
+      LOCAL_STORAGE_DIR: /app/local_storage
+    volumes:
+      - weschool_storage:/app/local_storage
+
+volumes:
+  weschool_mongo:
+  weschool_storage:
